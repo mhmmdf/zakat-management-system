@@ -75,8 +75,8 @@ php artisan storage:link
 ### 👤 Akun Default
 
 Setelah menjalankan seeder, login dengan:
-- **Email:** `ichsan@demo.dev`
-- **Password:** `ucok`
+- **Email:** `admin@admin.com`
+- **Password:** `admin`
 
 ## 📄 Lisensi
 
