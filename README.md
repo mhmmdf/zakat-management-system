@@ -1,83 +1,162 @@
-<h1 align="center">Sistem Manajemen Zakat Fitrah Masjid</h1>
+# Zakat Management System
+
+Digital Zakat Fitrah Management System for Mosques.
 
 <p align="center">
-  Aplikasi manajemen zakat fitrah berbasis web untuk pengelolaan data muzakki, mustahik, pengumpulan, dan distribusi zakat.
+  <img src="https://img.shields.io/badge/PHP-8.1%2B-777BB4?style=flat&logo=php" alt="PHP">
+  <img src="https://img.shields.io/badge/Laravel-10-FF2D20?style=flat&logo=laravel" alt="Laravel">
+  <img src="https://img.shields.io/badge/MySQL-SQLite-4479A1?style=flat&logo=mysql" alt="Database">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-<p align="center">
-  Dibuat dengan ❤️ oleh <a href="https://github.com/mhmmdf">Muhammad Fikri Arzyah</a>
-</p>
+---
 
-## ✨ Fitur
+## Why This App?
 
-- **Manajemen Muzakki** — Kelola data wajib zakat (muzakki)
-- **Manajemen Mustahik** — Kelola data penerima zakat beserta kategorinya
-- **Pengumpulan Zakat** — Catat pengumpulan zakat fitrah (beras/uang)
-- **Distribusi Zakat** — Distribusikan zakat kepada mustahik dengan validasi stok
-- **Laporan Pengumpulan** — Lihat rekap pengumpulan zakat
-- **Laporan Distribusi** — Lihat rekap distribusi zakat
-- **Artikel & Galeri** — Kelola konten website masjid
+Managing zakat fitrah with spreadsheets is painful. This app was built for real mosque needs:
 
-## 🛠️ Prasyarat
+- Manage muzakki (zakat payers) and mustahik (zakat recipients) data
+- Record zakat collection (rice & money) with automatic stock updates
+- Distribute zakat to recipients with real-time stock validation
+- Generate collection & distribution reports
 
-- PHP 8.1+
-- Composer
-- MySQL / MariaDB (atau SQLite untuk development)
-- Node.js & NPM (untuk asset build)
+---
 
-## 🚀 Instalasi
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| Master Data | Manage Muzakki, Mustahik, & Mustahik Categories |
+| Zakat Collection | Record rice/money payments, auto-update stock |
+| Zakat Distribution | Distribute to recipients, real-time stock validation |
+| Reports | Collection & distribution recap ready to print |
+| Articles & Gallery | Manage mosque website content |
+| Auth System | Multi-user login with session management |
+
+---
+
+## Tech Stack
+
+| Stack | Tech |
+|-------|------|
+| Backend | PHP 8.1+, Laravel 10 |
+| Frontend | Tailwind CSS, Alpine.js, Vite |
+| Database | MySQL / MariaDB / SQLite |
+| UI Kit | Cuba Admin Template |
+
+---
+
+## Installation
+
+### Prerequisites
 
 ```bash
-# Clone repository
+php --version    # min 8.1
+composer --version
+node --version   # 16+
+npm --version
+```
+
+### Quick Start (SQLite)
+
+```bash
 git clone https://github.com/mhmmdf/zakat-management-system.git
 cd zakat-management-system
 
-# Install PHP dependencies
 composer install
-
-# Copy environment file
-cp .env.example .env
-
-# Generate app key
-php artisan key:generate
-
-# Buat database, lalu sesuaikan konfigurasi di .env
-
-# Jalankan migrasi dan seeder
-php artisan migrate:fresh --seed
-
-# Install & build frontend assets
 npm install && npm run build
 
-# Buat storage link
+cp .env.example .env
+php artisan key:generate
+
+touch database/database.sqlite
+php artisan migrate:fresh --seed
 php artisan storage:link
 
-# Jalankan aplikasi
 php artisan serve
 ```
 
-### 📦 Opsional: Setup dengan SQLite (tanpa MySQL)
+### MySQL Setup
 
 ```bash
+git clone https://github.com/mhmmdf/zakat-management-system.git
+cd zakat-management-system
+composer install
+npm install && npm run build
+
 cp .env.example .env
-sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/' .env
-sed -i 's/DB_HOST=/# DB_HOST=/' .env
-sed -i 's/DB_PORT=/# DB_PORT=/' .env
-sed -i 's/DB_DATABASE=/# DB_DATABASE=/' .env
-sed -i 's/DB_USERNAME=/# DB_USERNAME=/' .env
-sed -i 's/DB_PASSWORD=/# DB_PASSWORD=/' .env
-touch database/database.sqlite
 php artisan key:generate
-php artisan migrate:fresh --seed
-php artisan storage:link
 ```
 
-### 👤 Akun Default
+Edit `.env` to set your database credentials, create the database, then:
 
-Setelah menjalankan seeder, login dengan:
-- **Email:** `admin@admin.com`
-- **Password:** `admin`
+```bash
+php artisan migrate:fresh --seed
+php artisan storage:link
+php artisan serve
+```
 
-## 📄 Lisensi
+### Default Credentials
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | `admin@admin.com` | `admin` |
+
+Change the password after first login.
+
+---
+
+## Project Structure
+
+```
+├── app/
+│   ├── Http/Controllers/Backend/
+│   ├── Models/
+│   └── ...
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── resources/views/
+│   ├── pages/backend/
+│   ├── layouts/
+│   ├── includes/backend/
+│   └── auth/
+├── routes/
+│   ├── web.php
+│   └── auth.php
+└── public/
+```
+
+---
+
+## Testing
+
+```bash
+php artisan test
+```
+
+CI is configured with GitHub Actions -- runs automatically on every push to `main`.
+
+---
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feat/amazing-feature`)
+3. Commit (`git commit -m 'feat: add amazing feature'`)
+4. Push (`git push origin feat/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## License
+
+MIT License -- see [LICENSE](LICENSE).
+
+---
+
+<p align="center">
+  Built with love by <a href="https://github.com/mhmmdf">Muhammad Fikri Arzyah</a>
+</p>
