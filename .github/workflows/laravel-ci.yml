@@ -23,6 +23,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
+      - name: Install & build frontend assets
+        run: |
+          npm install
+          npm run build
+
       - name: Setup environment
         run: |
           cp .env.example .env
